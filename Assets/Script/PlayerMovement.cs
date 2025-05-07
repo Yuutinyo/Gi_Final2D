@@ -1,3 +1,4 @@
+using NUnit.Framework.Constraints;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -9,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     bool isGrounded;
     public Transform groundCheck;
     public LayerMask groundMask;
+    public bool facingRight = true;
     //Vector2 move;
     
     public float groundCheckRadius;
@@ -33,5 +35,13 @@ public class PlayerMovement : MonoBehaviour
         {
             rb2d.linearVelocity = Vector2.up * jumpForce;
         }
+    }
+
+    void FlipPlayer()
+    {
+        facingRight = !facingRight;
+        Vector2 localScale = gameObject.transform.localScale;
+        localScale.x *= -1;
+        transform.localScale = localScale;  
     }
 }
